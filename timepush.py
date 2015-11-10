@@ -39,7 +39,7 @@ def Push(tree,pt):
         p = str(node.get("p")).split(',') # danmaku setting p
         nt = float(p[0]) + float(pt)
         p[0] = str(nt)
-        print(",".join(p))
+        #print(",".join(p))
         node.set("p",",".join(p))
 
         #node.set("p",ds)
@@ -52,10 +52,11 @@ def Push(tree,pt):
 def main():
     fn = sys.argv[1] # filename as fn
     pt = sys.argv[2] # pushtime as pt
+    ou = sys.argv[3] # outputname as ou
 
     tree = Read(fn)
     Push(tree,pt)
-    tree.write("output.xml",encoding="UTF-8", pretty_print=True)
+    tree.write(ou,encoding="UTF-8", pretty_print=True)
     #tree.write("output1.xml") 
 
 
