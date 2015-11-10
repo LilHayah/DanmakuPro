@@ -1,3 +1,21 @@
+#!/usr/bin/env python3
+
+# timepush.py - pushing the display time of comments in a danmaku xml file
+#   Copyright (C) 2015  LilHayah
+
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 import sys
 import time
 import xml.dom.minidom
@@ -9,7 +27,9 @@ from xml.etree.ElementTree import ElementTree,Element
 def Read(fn):
     #tree = ElementTree()
     #tree.parse(fn)
-    tree = etree.parse(fn)
+    with open(fn, encoding='utf-8') as f:
+        tree = etree.parse(f)
+    #tree = etree.parse(fn)
     return tree
 
 def Push(tree,pt):
@@ -35,7 +55,7 @@ def main():
 
     tree = Read(fn)
     Push(tree,pt)
-    tree.write("output.xml", pretty_print=True)
+    tree.write("output.xml",encoding="UTF-8", pretty_print=True)
     #tree.write("output1.xml") 
 
 
